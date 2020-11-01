@@ -16,7 +16,7 @@ with sr.Microphone() as source_audio:
     to_send_or_not = input("Do you want to send this?") # Asks for if you want to send the message after checking the text
 
     if to_send_or_not.lower() == 'yes':
-        message = client.messages.create(from_='your_generated_number', 
+        message = client.messages.create(from_='your_generated_number_from_twilio', 
                                 body= text, 
                                 to='recipent_number')
     elif to_send_or_not.lower() == 'no':
