@@ -13,13 +13,13 @@ with sr.Microphone() as source:
     audio_data = recognizer.record(source, duration=10) # records the voice for max 10 seconds
     text = recognizer.recognize_google(audio_data)
     print(text)
-    move_further = input("Do you want to send this?") # Asks for if you want to send the message after checking the text
+    to_send_or_not = input("Do you want to send this?") # Asks for if you want to send the message after checking the text
 
-    if move_further.lower() == 'yes':
+    if to_send_or_not.lower() == 'yes':
         message = client.messages.create(from_='your_generated_number', 
                                 body= text, 
                                 to='recipent_number')
-    elif move_further.lower() == 'no':
+    elif to_send_or_not.lower() == 'no':
         print("Exiting the program")
         exit()
     else:
