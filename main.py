@@ -1,0 +1,27 @@
+import twilio.rest # pip3 install twilio
+import speech_recognition as sr # pip3 install SpeechRecognition pydub
+
+recognizer = sr.Recognizer()
+
+#Register on https://www.twilio.com/
+sid = 'your_SID_ID'
+auth_token = 'your_auth_token'
+
+client = twilio.rest.Client(sid, auth_token)
+
+with sr.Microphone() as source:
+    audio_data = recognizer.record(source, duration=10) # records the voice for max 10 seconds
+    text = recognizer.recognize_google(audio_data)
+    print(text)
+    move_further = input("Do you want to send this?") # Asks for if you want to send the message after checking the text
+
+    if move_further.lower() == 'yes':
+        message = client.messages.create(from_='your_generated_number', 
+                                body= text, 
+                                to='recipent_number')
+    elif move_further.lower() == 'no':
+        print("Exiting the program")
+        exit()
+    else:
+        print('Something went wrong')
+        exit()
