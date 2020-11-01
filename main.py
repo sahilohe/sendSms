@@ -9,8 +9,8 @@ auth_token = 'your_auth_token'
 
 client = twilio.rest.Client(sid, auth_token)
 
-with sr.Microphone() as source:
-    audio_data = recognizer.record(source, duration=10) # records the voice for max 10 seconds
+with sr.Microphone() as source_audio:
+    audio_data = recognizer.record(source_audio, duration=10) # records the voice for max 10 seconds
     text = recognizer.recognize_google(audio_data)
     print(text)
     to_send_or_not = input("Do you want to send this?") # Asks for if you want to send the message after checking the text
