@@ -9,7 +9,7 @@ auth_token = 'your_auth_token'
 
 client = twilio.rest.Client(sid, auth_token)
 
-with sr.Microphone() as source_audio:
+with sr.Microphone() as source_audio: # pip3 install pyaudio, sudo apt install jackd2
     audio_data = recognizer.record(source_audio, duration=10) # records the voice for max 10 seconds
     text = recognizer.recognize_google(audio_data)
     print(text)
